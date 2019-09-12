@@ -16,14 +16,24 @@ const StyledGhostTitle = styled.p`
     opacity: 1;
   }
 `
+const StyledButton = styled.button`
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  color: white;
 
-
-
-
+  ${props => (props.type === "image" ? `background: purple`: null)}
+  ${props => (props.type === "Nasa" ? `background: blue`: null)}
+  `;
 
 
 function PhotoDisplay(props) {
   const { name } = props;
+
+  const testMe = () => {
+    console.log('testMe');
+  }
 
   return (
     <div>
@@ -36,6 +46,8 @@ function PhotoDisplay(props) {
                     : <h5> Date unknown  Copyright: {name.copyright}</h5>
         }  
       </div>
+      <StyledButton type="image" href={name.url} onClick={()=> window.open("{name.url}", "_blank")} alt={name.title}>Image Link</StyledButton>
+      <StyledButton type="Nasa" href="https://www.nasa.gov/" onClick={()=> window.open("https://www.nasa.gov/", "_blank")} alt={name.title}>NASA</StyledButton>
       <StyledExplanation>
         <StyledGhostTitle><strong>{name.title}</strong></StyledGhostTitle>
         <p>{name.explanation}</p>
