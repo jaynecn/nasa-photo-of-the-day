@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import "./App.css";
 
 //Styled Components
-const StyledImageWidth = styled.img`
-  width: 20vw;`
+const StyledImage = styled.img`
+  width: 20vw;
+  animation-name: App-logo-spin;
+    animation-delay: 1.5s;
+    animation-duration: 2s;
+    animation-direction: linear;
+    animation-iteration-count: 2;`
 
 const StyledExplanation = styled.div`
   text-align: justify;`
@@ -31,15 +37,11 @@ const StyledButton = styled.button`
 function PhotoDisplay(props) {
   const { name } = props;
 
-  const testMe = () => {
-    console.log('testMe');
-  }
-
   return (
     <div>
       <h1>{name.title}</h1>
       <div className="imageDiv">
-        { name.url ? <StyledImageWidth className='image' src={name.url} alt={name.title}></StyledImageWidth>
+        { name.url ? <StyledImage className='image' src={name.url} alt={name.title}></StyledImage>
                    : <div> Photo loading... </div>
         }
         { name.date ? <h5> Date: {name.date}  Copyright: {name.copyright}</h5>
