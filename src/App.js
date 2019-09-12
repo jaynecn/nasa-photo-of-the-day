@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
 import "./App.css";
+import PhotoList from './PhotoList';
 
 function App() {
+  const [list, setList] = useState({
+    photos: []    
+  });
+
+  useEffect(() => {
+    axios.get('https://lambda-github-api-server.herokuapp.com/')
+      .then((response) => {
+        console.log(response.data);
+        setList({photos: response.data});
+    })
+      .catch((error) => {
+      console.log(`API error: ${error.message}`);
+    }) 
+  }, [])
+  
+
   return (
     <div className="App">
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p>
+      <PhotoList photos={list.photos} />
     </div>
   );
 }
